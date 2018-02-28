@@ -1,0 +1,4 @@
+nodejs_project:
+  build:
+    image: organisation_name/project_name
+    dockerfile: Dockerfile.build

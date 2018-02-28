@@ -1,0 +1,7 @@
+- name: ci
+  type: parallel
+  steps:
+  - service: nodejs_project
+    command: npm run-script test-acceptance
+  - service: nodejs_project
+    command: npm run-script test-unit

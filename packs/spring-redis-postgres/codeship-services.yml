@@ -1,0 +1,23 @@
+maven:
+  build:
+    image: cloudbees/sample-project
+    dockerfile: Dockerfile.build
+  cached: true
+  volumes:
+  - ./tmp:/target
+
+integration:
+  image: busybox
+  depends_on:
+    - redis
+    - postgres
+  environment:
+    - DATABASE_URL=postgres://postgres@postgres/YOUR_DATABASE_NAME
+    - REDIS_URL=redis://redis
+  volumes-from:
+    - maven
+
+redis:
+  image: healthcheck/redis:alpine
+postgres:
+  image: healthcheck/postgres:alpine
